@@ -50,9 +50,13 @@ data class Money(var value: Double = 0.0, var cur: Currency = Currency.TZS) {
             }
             counts++
         }
-        out += (if (mantisa.toInt() < 10) "0" else "") + mantisa.toInt()
+        val mantisaValue = (if (mantisa.toInt() < 10) "0" else "") + mantisa.toInt()
+        if (mantisaValue != "00") {
+            out += ".$mantisaValue"
+        }
         return out
     }
 }
 
 operator fun Number.times(m: Money) = m * this
+fun Number.toMoney(currency: Currency = Currency.TZS) = Money(this.toDouble(), currency)
