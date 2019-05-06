@@ -1,5 +1,7 @@
 package com.asofttz.money
 
-enum class Currency {
-    TZS
+data class Currency(val name: String = "") {
+    companion object {
+        val TZS = Currency("TZS")
+    }
 }
