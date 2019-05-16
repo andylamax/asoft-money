@@ -1,14 +1,11 @@
 buildscript {
     ext {
-        kotlin_version = "1.3.20-eap-52"
-    }
-    dependencies{
-        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
+        kotlin_version = "1.3.31"
     }
 }
 
 plugins {
-    id 'kotlin-multiplatform' version '1.3.20-eap-52'
+    id 'kotlin-multiplatform' version '1.3.31'
 }
 
 repositories {
@@ -19,10 +16,9 @@ repositories {
 }
 
 group 'com.asofttz'
-version '0.0.0'
+version '1.0.0'
 
 apply plugin: 'maven-publish'
-apply plugin: 'kotlinx-serialization'
 
 kotlin {
     jvm() {
@@ -32,7 +28,7 @@ kotlin {
             }
         }
     }
-    
+
     js() {
         compilations.all {
             tasks[compileKotlinTaskName].kotlinOptions {
@@ -48,7 +44,6 @@ kotlin {
         commonMain {
             dependencies {
                 implementation kotlin('stdlib-common')
-                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:0.9.1"
             }
         }
         commonTest {
@@ -60,7 +55,6 @@ kotlin {
         jvmMain {
             dependencies {
                 implementation kotlin('stdlib-jdk8')
-                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.9.1"
             }
         }
         jvmTest {
@@ -71,11 +65,11 @@ kotlin {
         }
         jsMain {
             dependencies {
-                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:0.9.1"
                 implementation kotlin('stdlib-js')
             }
         }
         jsTest {
+            dependsOn jsMain
             dependencies {
                 implementation kotlin('test-js')
             }
