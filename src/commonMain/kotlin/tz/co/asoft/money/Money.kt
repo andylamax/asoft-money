@@ -1,4 +1,4 @@
-package com.asofttz.money
+package tz.co.asoft.money
 
 import kotlin.math.floor
 
@@ -52,6 +52,3 @@ data class Money(var value: Double = 0.0, var cur: Currency = Currency.TZS) {
         return out
     }
 }
-
-operator fun Number.times(m: Money) = m * this
-fun Number.toMoney(currency: Currency = Currency.TZS) = Money(this.toDouble(), currency)

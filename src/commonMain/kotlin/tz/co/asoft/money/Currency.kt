@@ -1,4 +1,4 @@
-package com.asofttz.money
+package tz.co.asoft.money
 
 data class Currency(val name: String = "") {
     companion object {
